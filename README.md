@@ -1,4 +1,4 @@
-[Live](https://6385fe95a6c76600a25105b2--tangerine-souffle-c57452.netlify.app/)
+[Live](https://podcast-projectt.netlify.app)
 
 ## Getting Started
 
