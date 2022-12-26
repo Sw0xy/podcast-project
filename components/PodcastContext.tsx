@@ -64,24 +64,24 @@ const PodcastContext = ({ children }: { children: ReactElement[] }) => {
         playEpisode,
       }}
     >
-      <div className="">
+      <div>
         {children}
         {currentEpisode && (
           <div>
-            <div className="min-h-[80px] w-full fixed bottom-0 z-40 bg-secondary p-3 flex items-center justify-between border-t border-border">
+            <div className="min-h-[80px] w-full fixed flex-col sm:flex-row bottom-0 z-40 bg-secondary p-3 flex items-center justify-between border-t border-border">
               <div className="flex items-center gap-x-3 max-w-sm w-full md:ml-8">
                 <img
                   src={currentEpisode.feedImage}
                   alt="pp"
-                  className="w-20 h-20 rounded-md"
+                  className="w-20 h-20 rounded-md hidden sm:block"
                 />
-                <div className="max-w-xs h-full">
+                <div className="w-full sm:max-w-xs h-full">
                   <h4 className="text-light_text text-sm font-semibold mb-2">
-                    {currentEpisode.title.length > 60
-                      ? currentEpisode.title.slice(0, 60) + "..."
+                    {currentEpisode.title.length > 70
+                      ? currentEpisode.title.slice(0, 70) + "..."
                       : currentEpisode.title}
                   </h4>
-                  <span className="font-medium text-sm uppercase text-text p-1 border border-border rounded-md">
+                  <span className="font-medium text-sm uppercase text-text p-1 border border-border rounded-md hidden sm:inline-block">
                     {currentEpisode.feedLanguage}
                   </span>
                 </div>
@@ -94,7 +94,7 @@ const PodcastContext = ({ children }: { children: ReactElement[] }) => {
                 type={currentEpisode.enclosureType}
                 autoplay={false}
               />
-              <div className="text-text max-w-sm w-full justify-center flex items-center p-4 gap-x-6">
+              <div className="text-text max-w-xs w-full justify-center hidden sm:flex items-center p-4 gap-x-6">
                 <button
                   className="hidden hover:text-white sm:block"
                   onClick={() => {
@@ -114,44 +114,46 @@ const PodcastContext = ({ children }: { children: ReactElement[] }) => {
                     <FaVolumeUp size={20} className="pointer-events-none" />
                   )}
                 </button>
-                <Range
-                  step={0.01}
-                  min={0}
-                  max={1}
-                  values={volume}
-                  onChange={(vol) => {
-                    if (audioPlayerRef.current) {
-                      audioPlayerRef.current.volume = vol[0];
-                      setVolume(vol);
-                    }
-                  }}
-                  renderTrack={({ props, children }) => (
-                    <div
-                      {...props}
-                      style={{
-                        ...props.style,
-                        height: "5px",
-                        width: "200px",
-                        borderRadius: "12px",
-                        backgroundColor: "#ccc",
-                      }}
-                    >
-                      {children}
-                    </div>
-                  )}
-                  renderThumb={({ props }) => (
-                    <div
-                      {...props}
-                      style={{
-                        ...props.style,
-                        height: "16px",
-                        width: "16px",
-                        backgroundColor: "#fff",
-                        borderRadius: "100%",
-                      }}
-                    />
-                  )}
-                />
+                <div className="hidden sm:block">
+                  <Range
+                    step={0.01}
+                    min={0}
+                    max={1}
+                    values={volume}
+                    onChange={(vol) => {
+                      if (audioPlayerRef.current) {
+                        audioPlayerRef.current.volume = vol[0];
+                        setVolume(vol);
+                      }
+                    }}
+                    renderTrack={({ props, children }) => (
+                      <div
+                        {...props}
+                        style={{
+                          ...props.style,
+                          height: "6px",
+                          width: "120px",
+                          borderRadius: "12px",
+                          backgroundColor: "#ccc",
+                        }}
+                      >
+                        {children}
+                      </div>
+                    )}
+                    renderThumb={({ props }) => (
+                      <div
+                        {...props}
+                        style={{
+                          ...props.style,
+                          height: "16px",
+                          width: "16px",
+                          backgroundColor: "#fff",
+                          borderRadius: "100%",
+                        }}
+                      />
+                    )}
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -261,7 +263,7 @@ const AudioComponent = ({
           <FaForward size={16} className="pointer-events-none" />
         </button>
       </div>
-      <div className="w-full flex items-center gap-3 text-text font-medium">
+      <div className="w-full items-center gap-3 text-text font-medium flex">
         <span>{moment.unix(currentTime).utc().format("mm:ss")}</span>
         <Range
           step={0.01}
@@ -281,7 +283,7 @@ const AudioComponent = ({
                 height: "5px",
                 width: "100%",
                 borderRadius: "12px",
-                backgroundColor: "#272832",
+                backgroundColor: "#34344a",
               }}
             >
               {children}

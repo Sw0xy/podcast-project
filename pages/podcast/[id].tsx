@@ -14,7 +14,7 @@ import Error from "../../components/Error";
 export default function PodcastPage() {
   const router = useRouter();
   const { id } = router.query;
-  const max = 18;
+  const max = 1000;
   const { isLoading, isError, data, refetch } = useQuery(
     [id],
     async () => {
@@ -65,18 +65,18 @@ export default function PodcastPage() {
   return (
     <div className="w-full h-full bg-bg">
       <div className="bg-gradient-to-b from-border to-transparent w-full flex items-center px-5">
-        <div className="flex flex-col md:flex-row gap-y-4 items-center mx-auto h-full mt-10">
+        <div className="flex flex-col lg:flex-row gap-y-4 items-center mx-auto h-full mt-10">
           {isLoading && <Loading />}
           {isError && <Error refetch={refetch} />}
           {data?.feed && (
             <img
               src={data?.feed.image}
               alt="image"
-              className="max-w-[280px] max-h-[280px] aspect-square rounded-md drop-shadow-lg shadow-lg"
+              className="max-w-[250px] max-h-[250px] aspect-square rounded-md drop-shadow-lg shadow-lg"
             />
           )}
           {data?.feed && (
-            <div className="flex flex-col gap-y-2 ml-2 md:ml-10 ">
+            <div className="flex flex-col gap-y-2 ml-2 lg:ml-10 ">
               <div>
                 <span className="text-text text-sm font-semibold uppercase bg-bg rounded border border-border p-1">
                   {data?.feed.language}
@@ -85,13 +85,13 @@ export default function PodcastPage() {
                   {data?.feed.episodeCount} Episode
                 </span>
               </div>
-              <h1 className="text-light_text text-3xl font-extrabold">
+              <h1 className="text-light_text  text-lg md:text-3xl font-bold md:font-extrabold max-w-xl">
                 {data?.feed.title}
               </h1>
               <span className="text-light_text font-medium">
                 {data?.feed.ownerName}
               </span>
-              <p className="text-text text-base max-w-[610px]">
+              <p className="text-text max-w-[660px] text-sm">
                 {data?.feed.description}
               </p>
               <p className="flex flex-wrap gap-2">
@@ -123,7 +123,7 @@ export default function PodcastPage() {
             <div
               key={i}
               onClick={() => playEpisode(item)}
-              className="group hover:cursor-pointer flex flex-col gap-y-4 md:flex-row items-start md:items-center bg-secondary rounded-md border border-border max-w-sm w-full p-4 hover:bg-hover"
+              className="group hover:cursor-pointer flex gap-x-2 flex-row items-start md:items-center bg-secondary rounded-md border border-border w-full max-w-xs p-4 hover:bg-hover"
             >
               <div className="relative min-w-fit ">
                 <div className="bg-black/70 rounded w-full h-full absolute top-1/2 left-1/2 z-10 -translate-x-1/2 hidden text-white -translate-y-1/2 group-hover:drop-shadow-lg group-hover:shadow-xl group-focus-within:block group-hover:flex group-hover:items-center">
@@ -132,20 +132,20 @@ export default function PodcastPage() {
                 <img
                   src={item.feedImage}
                   alt="feedImage"
-                  className="max-w-[350px] max-h-[350px] md:w-28 md:h-28 rounded"
+                  className="w-[100px] rounded"
                 />
               </div>
               <div className="md:ml-2">
                 <h1 className="text-light_text font-medium text-sm">
-                  {item.title.slice(0, 70)}
+                  {item.title.slice(0, 40)}
                   {item.title.length >= 60 ? "..." : " "}
                 </h1>
-                <p
+                <div
                   className="text-xs text-text"
                   dangerouslySetInnerHTML={{
                     __html: `${item.description.slice(0, 60) + "..."}`,
                   }}
-                ></p>
+                ></div>
                 <span className="text-text text-sm font-medium">{min} min</span>
               </div>
             </div>

@@ -8,13 +8,13 @@ import Error from "./Error";
 import Loading from "./Loading";
 type Props = {};
 
-const Sidebar = (props: Props) => {
+const Navbar = (props: Props) => {
   const [searchVal, setSearchVal] = useState("");
   const router = useRouter();
 
   function handleSearch(e: FormEvent) {
     e.preventDefault();
-    router.push("search/" + searchVal);
+    router.push("/search/" + searchVal);
   }
 
   const {
@@ -43,17 +43,20 @@ const Sidebar = (props: Props) => {
   );
 
   return (
-    <div className="w-full md:w-max h-full sticky left-0 top-0 bottom-0 bg-bg ">
+    <div className="w-full bg-secondary p-2">
       <form
         onSubmit={handleSearch}
-        className="w-full flex items-center justify-center flex-col border-r px-3 border-border"
+        className="w-full max-w-5xl flex items-center justify-between mx-auto flex-row md:px-3 "
       >
+        <Link href="/">
+          <h1 className="text-white text-lg md:text-2xl font-bold">PODY</h1>
+        </Link>
         <input
           onChange={(e) => setSearchVal(e.target.value)}
           placeholder="Search..."
-          className="text-text max-w-xs w-full px-4 py-2 text-sm bg-secondary border border-border rounded-lg outline-none mt-5"
+          className="text-text w-[180px] md:max-w-xs md:w-full px-4 py-2 text-sm bg-secondary border border-border rounded-lg outline-none"
         />
-        <div className="w-[200px]  flex-col pr-5 gap-y-2 mt-5 overflow-y-auto h-[calc(100vh)] hidden md:flex">
+        {/* <div className="w-full flex-col pr-5 gap-y-2 mt-5 overflow-y-auto hidden md:flex">
           {isLoading && <Loading />}
           {isError && <Error refetch={refetch} />}
           {categories?.feeds.map((item: { id: number; name: string }) => (
@@ -65,10 +68,10 @@ const Sidebar = (props: Props) => {
               <span>{item.name}</span>
             </Link>
           ))}
-        </div>
+        </div> */}
       </form>
     </div>
   );
 };
 
-export default Sidebar;
+export default Navbar;

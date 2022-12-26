@@ -19,7 +19,7 @@ const PodcastList = ({ title }: Props) => {
       try {
         let { data } = await axios({
           url: "/api/search?mode=tag&tag=" + title.toLowerCase(),
-          params: { limit: 24 },
+          params: { limit: 21 },
         });
         return data;
       } catch (error) {
@@ -27,6 +27,7 @@ const PodcastList = ({ title }: Props) => {
       }
     },
     {
+      keepPreviousData: true,
       enabled: true,
       cacheTime: 1000 * 60 * 60,
       staleTime: 1000 * 60 * 60,
@@ -34,9 +35,11 @@ const PodcastList = ({ title }: Props) => {
   );
   /*   */
   return (
-    <div className="w-full my-4">
+    <div className="w-full my-4 container mx-auto">
       <div className="w-full flex items-center justify-between">
-        <h1 className="text-2xl text-light_text font-semibold">{title}</h1>
+        <h1 className="text-2xl md:text-4xl my-3 text-light_text font-semibold">
+          {title}
+        </h1>
         <Link href={"tag/" + title}>
           {" "}
           <span className="text-text hover:underline font-medium">
@@ -44,7 +47,7 @@ const PodcastList = ({ title }: Props) => {
           </span>
         </Link>
       </div>
-      <div className="flex flex-wrap w-full gap-4 justify-center md:justify-start px-2 md:px-0">
+      <div className="w-full  sm:grid sm:grid-flow-row flex flex-wrap sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-8 gap-5 justify-center md:justify-start px-2 md:px-0">
         {isLoading && <Loading />}
         {isError && (
           <button

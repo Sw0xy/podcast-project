@@ -1,6 +1,6 @@
 import Head from "next/head";
 import PodcastList from "../components/PodcastList";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../components/Navbar";
 
 export default function Home() {
   return (
@@ -11,13 +11,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="w-full bg-bg flex flex-col md:flex-row items-start md:gap-x-4 ">
-        <Sidebar />
-        <div className="w-full overflow-y-auto h-full md:ml-10 p-4">
+      <main className="w-full bg-bg flex flex-col md:flex-col items-start md:gap-x-4 pt-1 md:pt-12">
+        <div className="w-full overflow-y-auto h-full pb-16">
           <PodcastList title="Technology" />
           <PodcastList title="Comedy" />
           <PodcastList title="Education" />
           <PodcastList title="Learning" />
+        </div>
+        <div className="flex items-center justify-center p-5 bg-secondary w-full">
+          <span className="text-sm text-gray-300">Developed by Swoxy</span>
         </div>
       </main>
     </div>

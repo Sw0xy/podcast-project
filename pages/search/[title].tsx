@@ -41,7 +41,7 @@ export default function PodcastPage() {
       <h1 className="text-center text-text font-semibold text-2xl">
         Results for <span className="text-light_text">{title}</span>
       </h1>
-      <div className="w-full h-full flex flex-wrap justify-center gap-3">
+      <div className="container mt-4 mx-auto w-full grid grid-flow-row grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-2 md:gap-5 justify-center md:justify-start px-2 md:px-0">
         {isLoading && <Loading />}
         {isError && <Error refetch={refetch} />}
         {podcasts?.feeds.map((item: Feed, index: number) => (
