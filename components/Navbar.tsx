@@ -17,31 +17,6 @@ const Navbar = (props: Props) => {
     router.push("/search/" + searchVal);
   }
 
-  const {
-    isLoading,
-    isError,
-    data: categories,
-    refetch,
-  } = useQuery(
-    ["categories"],
-    async () => {
-      try {
-        const { data } = await axios({
-          method: "get",
-          url: "/api/categories",
-        });
-        return data;
-      } catch (error) {
-        throw error;
-      }
-    },
-    {
-      enabled: true,
-      cacheTime: 1000 * 60 * 60,
-      staleTime: 1000 * 60 * 60,
-    }
-  );
-
   return (
     <div className="w-full bg-secondary p-2">
       <form
@@ -56,19 +31,6 @@ const Navbar = (props: Props) => {
           placeholder="Search..."
           className="text-text w-[180px] md:max-w-xs md:w-full px-4 py-2 text-sm bg-secondary border border-border rounded-lg outline-none"
         />
-        {/* <div className="w-full flex-col pr-5 gap-y-2 mt-5 overflow-y-auto hidden md:flex">
-          {isLoading && <Loading />}
-          {isError && <Error refetch={refetch} />}
-          {categories?.feeds.map((item: { id: number; name: string }) => (
-            <Link
-              href={`search/${item.name}`}
-              key={item.id}
-              className=" hover:bg-hover whitespace-nowrap px-2 py-1 border border-border rounded-full text-text text-sm w-full"
-            >
-              <span>{item.name}</span>
-            </Link>
-          ))}
-        </div> */}
       </form>
     </div>
   );
