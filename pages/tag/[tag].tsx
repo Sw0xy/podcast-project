@@ -36,7 +36,7 @@ export default function TagPage() {
   return (
     <div className="w-full h-full p-2 md:p-4">
       <h1 className="text-text text-2xl font-semibold text-center">{tag}</h1>
-      <div className="mt-4 container mx-auto w-full grid grid-flow-row grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-5 justify-center md:justify-start px-2 md:px-0">
+      <div className="mt-4 container mx-auto w-full grid grid-flow-row grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-5 justify-center md:justify-start px-2 md:px-0">
         {isLoading && (
           <div>
             <TailSpin
