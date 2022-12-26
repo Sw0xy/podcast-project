@@ -1,11 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { FormEvent, useState } from "react";
-import Error from "./Error";
-import Loading from "./Loading";
 type Props = {};
 
 const Navbar = (props: Props) => {
