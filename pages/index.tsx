@@ -1,6 +1,5 @@
 import Head from "next/head";
 import PodcastList from "../components/PodcastList";
-import Sidebar from "../components/Navbar";
 
 export default function Home() {
   return (
